@@ -1,5 +1,5 @@
 import initAnimacaoScroll from '/animacao-scroll.js';
-import initScrollSuave from '/scrol-suave.js';
+import ScrollSuave from '/scrol-suave.js';
 import initAcordion from '/acordion.js';
 import iniTabNav from '/tab-nav.js';
 import initModal from '/modal.js';
@@ -10,8 +10,10 @@ import initAnimaNumeros from '/anima-numeros.js';
 import initFuncionamento from '/horariofuncionamento.js';
 
 
+const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
+scrollSuave.init();
+
 initAnimacaoScroll();
-initScrollSuave();
 initAcordion();
 iniTabNav();
 initModal();
