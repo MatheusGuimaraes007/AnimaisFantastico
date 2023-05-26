@@ -2,7 +2,7 @@ import ScrollSuave from '/scrol-suave.js';
 import Accordion from '/acordion.js';
 import TabNav from '/tab-nav.js';
 import Modal from '/modal.js';
-import initTooltip from '/tooltip.js';
+import Tooltip from '/tooltip.js';
 import dropDownMenu from '/dropdownmenu.js';
 import initMenuMobile from '/menumobile.js';
 import initAnimaNumeros from '/anima-numeros.js';
@@ -22,8 +22,10 @@ tabNav.init();
 const modal = new Modal('[data-modal="abrir"]' , '[data-modal="fechar"]' , '[data-modal="container"]');
 modal.init();
 
+const toolTip = new Tooltip('[data-tooltip=""]');
+toolTip.init();
 
-initTooltip();
+
 dropDownMenu();
 initMenuMobile();
 initAnimaNumeros();
