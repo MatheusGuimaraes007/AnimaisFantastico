@@ -5,7 +5,7 @@ import Modal from '/modal.js';
 import Tooltip from '/tooltip.js';
 import dropDownMenu from '/dropdownmenu.js';
 import initMenuMobile from '/menumobile.js';
-import initAnimaNumeros from '/anima-numeros.js';
+import initAnimaNumeros from '/fetchAnimais.js';
 import initFuncionamento from '/horariofuncionamento.js';
 import initAnimacaoScroll from '/animacao-scroll.js';
 
