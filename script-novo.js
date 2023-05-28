@@ -7,7 +7,7 @@ import dropDownMenu from '/dropdownmenu.js';
 import initMenuMobile from '/menumobile.js';
 import fetchAnimais from '/fetchAnimais.js';
 import initFuncionamento from '/horariofuncionamento.js';
-import initAnimacaoScroll from '/animacao-scroll.js';
+import ScrollAnima from './scroll-anima.js';
 
 
 const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
@@ -25,11 +25,13 @@ modal.init();
 const toolTip = new Tooltip('[data-tooltip=""]');
 toolTip.init();
 
+const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
+scrollAnima.init();
+
 
 dropDownMenu();
 initMenuMobile();
 initFuncionamento();
-initAnimacaoScroll();
 
 fetchAnimais('/animaisapi.json' , '.numeros-grid');
 
