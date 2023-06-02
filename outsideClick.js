@@ -2,19 +2,20 @@ export default function outsideClick(element, events, callBack){
     const html = document.documentElement;
     const outside = 'data-outside';
 
-    if(!element.hasAttribute(outside)){
-        events.forEach(userEvents =>{
-    setTimeout(() => html.addEventListener(userEvents , handleOutsideClick))
-    });
-    element.setAttribute(outside, '');
-    }
-        function handleOutsideClick(event){
-            if(!element.contains(event.target)){
+    function handleoutSideClick(event) {
+        if (!element.contains(event.target)) {
             element.removeAttribute(outside);
-            events.forEach(userEvents =>{
-                html.removeEventListener(userEvents , handleOutsideClick);
-                }) 
+            events.forEach((userEvent) => {
+                html.removeEventListener(userEvent,handleoutSideClick);
+            });
             callBack();
-            }
         }
+    }
+
+    if(!element.hasAttribute(outside)) {
+        events.forEach((userEvent) => {
+            setTimeout(() => html.addEventListener(userEvent, handleoutSideClick));
+        });
+        element.setAttribute(outside, '');
+    }
 }

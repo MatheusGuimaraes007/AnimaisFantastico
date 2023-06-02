@@ -1,39 +1,38 @@
-export default function dropDownMenu(){
-    const dropDownMenus = document.querySelectorAll('[data-dropdown]');
+import outsideClick from "./outsideClick.js";
 
-    dropDownMenus.forEach((menu) =>{
-        ['touchstart', 'click'].forEach((userEvent) =>{
-            menu.addEventListener(userEvent, handClick);
-        })
-    })
-    
-    function handClick(event){
+export default class dropDownMenu{
+    constructor(dropdownMenu, events) {
+        this.dropDownMenus = document.querySelectorAll(dropdownMenu);
+        //define touchstar e click, argumento padrao de events
+        if (events === undefined) this.events = ['touchstart' , 'click'];
+        else this.events = events;
+
+        this.activeClass = 'active';
+        this.activeDropdownMenu = this.activeDropdownMenu.bind(this);
+    }
+    //ativa o dropdown mene e adiciona a funcao que oberva o click fora dele
+    activeDropdownMenu(event) {
         event.preventDefault();
-        this.classList.add('active');
-        outsideClick(this, ['touchstart', 'click'], () =>{
-            this.classList.remove('active');
+        const element = event.currentTarget;
+        element.classList.add(this.activeClass);
+        outsideClick(element, this.events, () => {
+            element.classList.remove(this.activeClass);
         });
     }
-    
-    function outsideClick(element, events, callBack){
-        const html = document.documentElement;
-        const outside = 'data-outside';
-    
-        if(!element.hasAttribute(outside)){
-            events.forEach(userEvents =>{
-        html.addEventListener(userEvents , handleOutsideClick);
-        })
-        element.setAttribute(outside, '');
+
+    addDropdownMenusEvent() {
+        this.dropDownMenus.forEach((menu) => {
+            this.events.forEach((userEvents) => {
+                menu.addEventListener(userEvents, this.activeDropdownMenu);
+            });
+        });
+    }
+
+    init() {
+        if (this.dropDownMenus.length) {
+            this.addDropdownMenusEvent();
         }
-            function handleOutsideClick(event){
-                if(!element.contains(event.target)){
-                element.removeAttribute(outside);
-                events.forEach(userEvents =>{
-                    html.removeEventListener(userEvents , handleOutsideClick);
-                    }) 
-                callBack();
-                }
-            }
+        return this;
     }
 }
 
